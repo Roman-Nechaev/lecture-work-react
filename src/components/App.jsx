@@ -102,6 +102,7 @@ class App extends Component {
           <p>Общее кол-во: {totalTodoCount}</p>
           <p>Кол-во выполненных: {completedTodo} </p>
         </div>
+
         <TodoEditor onSubmit={this.addTodo} />
 
         <TodoFilter value={filter} onChange={this.changeFilter} />
