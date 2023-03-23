@@ -1,48 +1,57 @@
 import { Component } from 'react';
+// import BeatLoader from 'react-spinners/BeatLoader';
 
-import { fetchBreeds, fetchDogByBreed } from 'api';
+import { fetchDogByBreed } from 'api';
 import { Dog } from './Dog';
 import { BreedSelect } from './BreedSelect';
+import { DogSkeleton } from './DogSkeleton';
 
 import { GlobalStyle } from '../components/GlobalStyle';
+import { ErrorMessage } from './ErrorMessage';
+import { Layout } from './Layout';
+import { errorMessages } from '../constants';
 
 export class App extends Component {
   state = {
-    breeds: [],
     dog: null,
     error: null,
+    isLoadingDog: false,
   };
-
-  async componentDidMount() {
-    try {
-      const breeds = await fetchBreeds();
-
-      this.setState({ breeds: breeds });
-    } catch (error) {
-      this.setState({ error: 'Упс, что-то пошло не так!' });
-    }
-  }
 
   selectBreed = async (option) => {
     try {
+      this.setState({ isLoadingDog: true });
       const dog = await fetchDogByBreed(option.value);
 
       this.setState({ dog });
     } catch (error) {
       console.log(error);
-      this.setState({ error: 'Упс, что-то пошло не так!' });
+      this.setState({ error: errorMessages.fetchDog });
+    } finally {
+      this.setState({ isLoadingDog: false });
     }
   };
 
   render() {
-    const { breeds, dog, error } = this.state;
+    const { dog, error, isLoadingDog } = this.state;
     return (
-      <>
+      <Layout>
+        <BreedSelect onSelect={this.selectBreed} />
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {isLoadingDog && <DogSkeleton />}
+        {dog && !isLoadingDog && <Dog dog={dog} />}
         <GlobalStyle />
-        <BreedSelect breeds={breeds} onSelect={this.selectBreed} />
-        {error && <div>{error}</div>}
-        {dog && <Dog dog={dog} />}
-      </>
+      </Layout>
     );
   }
 }
+
+// спинер
+// {
+//   /* <BeatLoader
+//           color="blue"
+//           loading={isLoadingDog}
+//           size={40}
+//           aria-label="Loading Spinner"
+//         /> */
+// }
