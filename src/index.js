@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
-// import { App } from 'components/App';
+import { App } from 'components/App';
 import { theme } from 'theme';
-
-import { App } from 'components/HTTPReqAbort';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
