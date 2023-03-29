@@ -45,13 +45,3 @@ export class App extends Component {
     );
   }
 }
-
-// спинер
-// {
-//   /* <BeatLoader
-//           color="blue"
-//           loading={isLoadingDog}
-//           size={40}
-//           aria-label="Loading Spinner"
-//         /> */
-// }
