@@ -1,16 +1,16 @@
 import { GlobalStyle } from './GlobalStyle';
 import { Layout } from './Layout';
-import { SkipMountExample } from './SkipMountExample';
-// import { LoginForm } from './LoginForm';
-import { MemoExample } from './MemoExample';
+// import { SkipMountExample } from './SkipMountExample';
+import { LoginForm } from './LoginForm';
+// import { MemoExample } from './MemoExample';
 
 export const App = () => {
   return (
     <Layout>
-      <SkipMountExample />
-      {/* <LoginForm /> */}
+      {/* <SkipMountExample /> */}
+      <LoginForm />
       {/* <MemoExample /> */}
-      {/* <GlobalStyle /> */}
+      <GlobalStyle />
     </Layout>
   );
 };
