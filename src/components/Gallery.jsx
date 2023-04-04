@@ -6,7 +6,7 @@ const Gallery = () => {
   //   useEffect(() => {
   // HTTP Запрос если нужно
   //   }, [params.dogId]);
-  console.log(params);
+
   return <div>Image Gallery: {params.dogId}</div>;
 };
 
